@@ -4,8 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from .locators import BasePageLocators
 import math
-import random
-import string
 
 
 class BasePage:
@@ -47,10 +45,6 @@ class BasePage:
             return True
 
         return False
-
-    @staticmethod
-    def generate_email():
-        return f"{''.join(random.choice(string.ascii_letters) for _ in range(10))}@mail.ru"
 
     def is_disappeared(self, how, what, timeout=4):
         try:

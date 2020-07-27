@@ -1,7 +1,13 @@
 from .pages.login_page import LoginPage
 from .pages.main_page import MainPage
-from .pages.base_page import BasePage
 import pytest
+import random
+import string
+
+
+# Вспомогательная функция для генерации уникального почтового адреса
+def generate_email():
+    return f"{''.join(random.choice(string.ascii_letters) for _ in range(10))}@mail.ru"
 
 
 @pytest.mark.need_review_custom_scenarios
@@ -44,7 +50,7 @@ def test_successful_registration(browser):
     link = 'http://selenium1py.pythonanywhere.com/accounts/login/'
     page = LoginPage(browser, link)
     page.open()
-    page.register_new_user(BasePage.generate_email(), '123qwer456', '123qwer456')
+    page.register_new_user(generate_email(), '123qwer456', '123qwer456')
     page = MainPage(browser, browser.current_url)
     page.should_be_successful_registration_or_login()
 
